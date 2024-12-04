@@ -73,12 +73,14 @@ wget -p --save-headers https://www.example.org -P ~/data/quic-root
 
 ```bash
 cd utils
-sudo sh ./generate-certs.sh
+sh ./generate-certs.sh
 mkdir -p ~/data/quic-cert
-sudo mv ./out/* ~/data/quic-cert
-rm -rf out
+mv ./out/* ~/data/quic-cert
+rm -rf out/
 cd -
 ```
+
+- NOTE : You will require openssl to generate a certificate and a key.
 
 - Run the quic server
 
