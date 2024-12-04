@@ -65,17 +65,18 @@ cd -
 - Download a copy of www.example.org, which we will serve locally using the simple_quic_server binary.
 
 ```bash
-mkdir -p ./data/quic-root
-wget -p --save-headers https://www.example.org -P ./data/quic-root
+mkdir -p ~/data/quic-root
+wget -p --save-headers https://www.example.org -P ~/data/quic-root
 ```
 
 - In order to run the simple_quic_server, you will need a valid certificate, and a private key is pkcs8 format. If you don't have one, there are scripts to generate them.
 
 ```bash
 cd utils
-./generate-certs.sh
-mkdir -p ./data/quic-cert
-mv ./out/* ./data/quic-cert/
+sudo sh ./generate-certs.sh
+mkdir -p ~/data/quic-cert
+sudo mv ./out/* ~/data/quic-cert
+rm -rf out
 cd -
 ```
 
