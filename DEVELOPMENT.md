@@ -16,6 +16,10 @@
   *if you need to enable gdb debug and asan，you may have to type like:*
 > cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="-fsanitize=address -fsanitize=leak -g" -DCMAKE_C_FLAGS="-fsanitize=address -fsanitize=leak -g" -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address -fsanitize=leak" -DCMAKE_MODULE_LINKER_FLAGS="-fsanitize=address -fsanitize=leak"
 
+# Quick Upgrade
+**Currently only upgrades google quiche**
+> bash utils/update_quiche.sh
+
 # Upgrade
 **1. Download google quiche and googleurl(if needed)**  
 > git clone https://quiche.googlesource.com/quiche google_quiche
