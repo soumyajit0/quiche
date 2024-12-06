@@ -65,19 +65,19 @@ cd -
 - Download a copy of www.example.org, which we will serve locally using the simple_quic_server binary.
 
 ```bash
-mkdir -p ~/data/quic-root
-wget -p --save-headers https://www.example.org -P ~/data/quic-root
+mkdir -p ./data/quic-root
+wget -p --save-headers https://www.example.org -P ./data/quic-root
 ```
 
 - In order to run the simple_quic_server, you will need a valid certificate, and a private key is pkcs8 format. If you don't have one, there are scripts to generate them.
 
 ```bash
+mkdir ./data/quic-cert
 cd utils
 sh ./generate-certs.sh
-mkdir -p ~/data/quic-cert
-mv ./out/* ~/data/quic-cert
-rm -rf out/
 cd -
+mv ./utils/out/* ./data/quic-cert/
+rm -rf utils/out/
 ```
 
 - NOTE : You will require openssl to generate a certificate and a key.
@@ -85,7 +85,7 @@ cd -
 - Run the quic server
 
 ```bash
-./build/simple_quic_server --quic_response_cache_dir=/home/soumyajit/data/quic-root/ --certificate_file=/home/soumyajit/data/quic-cert/leaf_cert.pem --key_file=/home/soumyajit/data/quic-cert/leaf_cert.pkcs8
+./build/simple_quic_server --quic_response_cache_dir=./data/quic-root/ --certificate_file=./data/quic-cert/leaf_cert.pem --key_file=./data/quic-cert/leaf_cert.pkcs8
 ```
 
 - Request the file with quic client

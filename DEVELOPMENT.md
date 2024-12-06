@@ -4,7 +4,7 @@
 > export  GOPROXY=https://goproxy.io
 > apt-get install git cmake build-essential protobuf-compiler libprotobuf-dev golang-go libunwind-dev libicu-dev
 
-**2. Build**  
+**2. Build**
 > git clone https://github.com/bilibili/quiche.git && cd quiche  
 > git submodule update --init --recursive
 > mkdir -p build  
@@ -17,21 +17,31 @@
 > cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="-fsanitize=address -fsanitize=leak -g" -DCMAKE_C_FLAGS="-fsanitize=address -fsanitize=leak -g" -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address -fsanitize=leak" -DCMAKE_MODULE_LINKER_FLAGS="-fsanitize=address -fsanitize=leak"
 
 # Quick Upgrade
-> bash utils/update_quiche.sh
+```bash
+bash utils/update_quiche.sh
+```
 
 # Upgrade
-**1. Download google quiche and googleurl(if needed)**  
-> git clone https://quiche.googlesource.com/quiche google_quiche
+**1. Download google quiche and googleurl(if needed)**
+```bash
+git clone https://quiche.googlesource.com/quiche google_quiche
+```
 
 **2. Select a proper tag from chromium and find out quiche version and boringssl version and absl version it depended on, then checkout it.**
-> git checkout [commit-id]
+```bash
+git checkout [commit-id]
+```
 
-**3. Rewrite**  
-> cp -fr google_quiche/* quiche/gquiche
-> cd quiche && bash utils/google_quiche_rewrite.sh
+**3. Rewrite**
+```bash
+cp -fr google_quiche/* quiche/gquiche
+cd quiche && bash utils/google_quiche_rewrite.sh
+```
 
 **4. Check if any file or dir should be checkouted**
-> git checkout README.md
+```bash
+git checkout README.md
+```
 
 **5. Update VERSION, log chromium tag and quiche/boringssl version and quiche/abseil-cpp version**
 
