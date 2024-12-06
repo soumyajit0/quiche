@@ -45,7 +45,7 @@ git submodule update --init
 
 ```bash
 mkdir build && cd build  
-cmake .. && make
+cmake .. && make -j$(nproc)
 cd -
 ```
 
