@@ -91,7 +91,7 @@ rm -rf utils/out/
 - Request the file with quic client
 
 ```bash
-./build/simple_quic_client --disable_certificate_verification=true --host=127.0.0.1 --port=6121 "https://www.example.org/index.html"
+./build/simple_quic_client --disable_certificate_verification=true --host=127.0.0.1 --port=6121 "https://www.example.org/index.html" --multi_packet_chlo=true
 ```
 
 You can also use chormium-based browsers to access simple_quic_server at `127.0.0.1:6121`, and check the request/response protocol by DevTools -> Network panel.

@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+#include <fstream>
 #include "gquiche/quic/core/crypto/tls_server_connection.h"
 
 #include "absl/strings/string_view.h"
@@ -109,8 +110,16 @@ ssl_select_cert_result_t TlsServerConnection::EarlySelectCertCallback(
 
 // static
 void TlsServerConnection::KeylogCallback(const SSL *ssl, const char *line) {
-  std::cout << line << std::endl;
-  return;
+    const char* filePath = "sskleylogfile.log";
+    std::ofstream keylogFile(filePath, std::ios::app);
+    if (keylogFile.is_open()) {
+        keylogFile << line << std::endl;
+        keylogFile.close();
+    } else {
+        std::cerr << "Failed to open file: " << filePath << std::endl;
+    }
+
+    return;
 }
 
 // static
