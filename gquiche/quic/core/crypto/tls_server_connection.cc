@@ -34,6 +34,8 @@ bssl::UniquePtr<SSL_CTX> TlsServerConnection::CreateSslCtx(
   // connections may call SSL_set_custom_verify on their SSL object to request
   // client certs.
 
+  SSL_CTX_set_keylog_callback(ssl_ctx.get(), &KeylogCallback);
+
   SSL_CTX_set_tlsext_servername_callback(ssl_ctx.get(),
                                          &TlsExtServernameCallback);
   SSL_CTX_set_alpn_select_cb(ssl_ctx.get(), &SelectAlpnCallback, nullptr);
@@ -103,6 +105,12 @@ ssl_select_cert_result_t TlsServerConnection::EarlySelectCertCallback(
     const SSL_CLIENT_HELLO* client_hello) {
   return ConnectionFromSsl(client_hello->ssl)
       ->delegate_->EarlySelectCertCallback(client_hello);
+}
+
+// static
+void TlsServerConnection::KeylogCallback(const SSL *ssl, const char *line) {
+  std::cout << line << std::endl;
+  return;
 }
 
 // static

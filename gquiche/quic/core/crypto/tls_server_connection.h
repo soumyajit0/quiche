@@ -131,6 +131,8 @@ class QUIC_EXPORT_PRIVATE TlsServerConnection : public TlsConnection {
   // Specialization of TlsConnection::ConnectionFromSsl.
   static TlsServerConnection* ConnectionFromSsl(SSL* ssl);
 
+  static void KeylogCallback(const SSL *ssl, const char *line);
+
   static ssl_select_cert_result_t EarlySelectCertCallback(
       const SSL_CLIENT_HELLO* client_hello);
 
